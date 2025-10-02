@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banana</title>
+  <meta name="description" content="Precision-built landing page." />
+  <meta name="theme-color" content="#ffffff" />
+  <!-- CSS first, small and cacheable -->
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <nav class="nav" aria-label="Primary">
+      <img src="/assets/icon.jpeg" class="navico"></a>
+      <p1>Store</p1>
+      <p1>Mac</p1>
+      <p1>iPhone</p1>
+      <p1>iPad</p1>
+      <p1>Watch</p1>
+      <p1>Vision</p1>
+      <p1>AirPods</p1>
+      <p1>TV & Home</p1>
+      <p1>Entertainment</p1>
+      <p1>Accessories</p1>
+      <p1>Support</p1>
+
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero" data-module="ScrollReveal">
+        <div class="hero_inner">
+            
+                <p class="hero__subtitle"> More Power.  More Performance.  More Price.</p>
+          <a class="btn btn-primary" href="#buy">Learn more</a>
+                  
+                <!-- <div class="hero__cta">
+                    <a class="btn btn-primary" href="#buy">Learn more</a>
+                    <a class="btn btn-secondary" href="#learn">Buy</a>
+                </div> -->
+        </div>
+      <img class="heroimage" src="/assets/1.png">
+    </section>
+
+    <section class="between-cta" aria-label="Learn more">
+      <div class="liquidGlass-wrapper button">
+        <div class="liquidGlass-effect"></div>
+        <div class="liquidGlass-tint"></div>
+        <div class="liquidGlass-shine"></div>
+        <div class="liquidGlass-text">Learn more</div>
+      </div>
+    </section>
+
+  <section id="learn" class="product-highlights">
+      <div class="highlight-grid">
+        <div class="highlight">
+          <h3>A17 Pro chip</h3>
+          <h4>Pro performance</h4>
+          <p>Game‑changing performance for everything you love to do.</p>
+        </div>
+        <div class="highlight">
+          <h3>Action button</h3>
+          <h4>Do more than ever</h4>
+          <p>The Action button is a fast track to your favorite feature.</p>
+        </div>
+        <div class="highlight">
+          <h3>Pro camera system</h3>
+          <h4>Close‑up and farther out</h4>
+          <p>Get incredible detail with the new 5x Telephoto camera.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-callout">
+      <h2>Forged in titanium</h2>
+      <p class="feature-description">
+        Titanium has one of the best strength‑to‑weight ratios of any metal, making these our lightest Pro models ever.
+      </p>
+    </section>
+
+    <section class="tech-specs">
+      <h2>Why you'll love Banana</h2>
+      <div class="specs-grid">
+        <div class="spec">
+          <h3>Privacy</h3>
+          <p>Your data stays yours. Advanced encryption and on‑device processing.</p>
+        </div>
+        <div class="spec">
+          <h3>Environment</h3>
+          <p>Made with recycled materials and carbon neutral by 2030.</p>
+        </div>
+        <div class="spec">
+          <h3>Accessibility</h3>
+          <p>Built‑in features that work the way you do.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© 2025 Banana Inc.</small>
+  </footer>
+
+  <!-- Minimal, modular JS. Loads after HTML/CSS. -->
+  <!-- Liquid glass filter -->
+  <svg style="display: none">
+    <filter
+      id="glass-distortion"
+      x="0%"
+      y="0%"
+      width="100%"
+      height="100%"
+      filterUnits="objectBoundingBox"
+    >
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.01 0.01"
+        numOctaves="1"
+        seed="5"
+        result="turbulence"
+      />
+      <!-- Seeds: 14, 17,  -->
+
+      <feComponentTransfer in="turbulence" result="mapped">
+        <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+        <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+        <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+      </feComponentTransfer>
+
+      <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+
+      <feSpecularLighting
+        in="softMap"
+        surfaceScale="5"
+        specularConstant="1"
+        specularExponent="100"
+        lighting-color="white"
+        result="specLight"
+      >
+        <fePointLight x="-200" y="-200" z="300" />
+      </feSpecularLighting>
+
+      <feComposite
+        in="specLight"
+        operator="arithmetic"
+        k1="0"
+        k2="1"
+        k3="1"
+        k4="0"
+        result="litImage"
+      />
+
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="softMap"
+        scale="150"
+        xChannelSelector="R"
+        yChannelSelector="G"
+      />
+    </filter>
+  </svg>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
