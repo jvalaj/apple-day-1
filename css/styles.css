@@ -1,6 +1,5 @@
 /* Apple-inspired design system */
 @layer tokens, base, components, sections, utilities;
-
 /* ------------- tokens ------------- */
 @layer tokens {
   :root {
@@ -26,7 +25,11 @@
     font-size: 62.5%; 
     scroll-behavior: smooth;
   }
+
+
+
   body {
+    cursor: none !important;
     margin: 0;
     color: var(--fg);
     background: var(--bg);
@@ -41,43 +44,30 @@
     line-height: 1.1;
     letter-spacing: -0.022em;
   }
-  p { margin: 0; }
+
+    #cursor {
+    position: fixed;
+    z-index: 10000;
+    overflow: hidden;
+    left: 0;
+    inset: 0;
+    top: 0;
+    border-radius: 100%;
+    width: 40px;         /* ball size */
+    height: 40px;
+    box-shadow:  white;
+    transform: translate(-50%, -50%);
+    }
+   
+  p { color:white;
+    margin: 0; }
   img, picture { max-inline-size: 100%; block-size: auto; display: block; }
   .sr-only { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 }
 
 /* ------------- components ------------- */
 @layer components {
-  /* Glass cursor base */
-  .glass-cursor {
-    position: fixed;
-    left: 0; top: 0;
-    width: 56px; height: 56px;
-    border-radius: 9999px;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%) scale(1);
-    transition: transform 180ms ease, opacity 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
-    background: color-mix(in srgb, #ffffff 10%, transparent);
-    -webkit-backdrop-filter: blur(12px) saturate(140%);
-    backdrop-filter: blur(12px) saturate(140%);
-    box-shadow: inset 2px 2px 0 -2px rgba(255,255,255,0.7), inset 0 0 3px 1px rgba(255,255,255,0.65), 0 6px 24px rgba(0,0,0,0.12);
-    filter: url(#cursor-glass);
-    opacity: 0; /* fade in after first move */
-  }
-  .glass-cursor::before {
-    content: '';
-    position: absolute; inset: 0;
-    border-radius: inherit;
-    background: radial-gradient(120% 120% at 25% 20%, rgba(255,255,255,0.35), rgba(255,255,255,0) 55%);
-    pointer-events: none;
-  }
-  /* Scale up over interactive targets */
-  .glass-cursor.is-hover {
-    transform: translate(-50%, -50%) scale(1.25);
-  }
-  @media (hover: none) {
-    .glass-cursor { display: none; }
+  /* Hide default cursor on devices with hover capability */
   }
   .nav { 
     width: 70%; 
@@ -95,9 +85,10 @@
     
   }
   .site-header{
-        background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: saturate(180%) blur(20px);
     width: 100%;
+    
   }
   .nav .p1{
     color: white;
@@ -135,54 +126,9 @@
     margin-left: auto ;
     margin-right: auto;
     height: 45rem !important;
-    z-index: -20;
-  }
-  .btn {
-    appearance: none;
-    border: 0;
-    border-radius: 70px;
-    padding: 12px 24px;
-    cursor: pointer;
-    font-weight: 400;
-    font-size: 1.7rem;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s ease;
-    margin: 0 6px;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: #fff;
-  }
-  .btn-primary:hover {
-    background: var(--accent-hover);
-  }
-  .btn-secondary {
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-  }
-  .btn-secondary:hover {
-    background: var(--accent);
-    color: #fff;
+
   }
 
-  /* Liquid glass button */
-  .btn-glass {
-    position: relative;
-    display: inline-block;
-    padding: 14px 28px;
-    border-radius: 9999px;
-    color: #fff;
-    background: rgba(255,255,255,0.08);
-    -webkit-backdrop-filter: blur(10px) saturate(140%);
-    backdrop-filter: blur(10px) saturate(140%);
-    box-shadow: inset 2px 2px 0 -2px rgba(255,255,255,0.7), inset 0 0 3px 1px rgba(255,255,255,0.6), 0 8px 24px rgba(0,0,0,0.15);
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.25);
-    filter: url(#btn-glass);
-  }
-  .btn-glass:hover { background: rgba(255,255,255,0.12); }
 
   /* LIQUID GLASS STYLES */
   .liquidGlass-wrapper {
@@ -194,7 +140,7 @@
     overflow: hidden;
     color: black;
     cursor: pointer;
-     background-image: url('assets/ipadpro.jpg');
+    background-image: url('assets/ipadpro.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -230,9 +176,9 @@
 
   .liquidGlass-text {
     z-index: 3;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: black;
-    padding: 0 2rem;
+   
   }
 
   /* Button specific styles */
@@ -241,29 +187,18 @@
     border-radius: 3rem;
   }
 
-  .button,
-  .button > div {
-    border-radius: 3rem;
-  }
 
-  .button:hover {
-    padding: 1.8rem 2.8rem;
-  }
-
-  .button:hover > div {
-    border-radius: 4rem;
-  }
-}
 
 /* ------------- sections ------------- */
 @layer sections {
   .hero {
     background-color: black;
     width: 100%;
+    border-radius: 0 0 50px 50px;
   }
     .hero_inner {
     height: 20vh !important;
-
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -297,9 +232,7 @@
     color: white;  
 
   }
-  .hero__pricing {
-    margin: 0 0 20px;
-  }
+
   .hero__pricing p {
     font-size: 2.1rem;
     color: var(--muted);
@@ -345,25 +278,35 @@
   .feature-callout {
     padding: 120px var(--pad);
     text-align: center;
-    max-width: var(--hero-maxw);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    /* full-bleed section */
+    width: 100%;
     margin: 0 auto;
+    background-image: url('/assets/ipadpro.jpg') !important;
   }
+  .marquee {
+    display: flex;
+    flex-direction: column;
+
+  }
+.glass {
+  width: 200px;
+  height: 200px;
+  backdrop-filter: url(#displacementFilter4);
+}
 
   /* Between-CTA: centers an absolute button between sections */
   .between-cta {
     position: relative;
-    height: 0px; /* allocate space so the button isn’t overlapped */
-    margin: 8px 0; /* subtle separation */
+    height: 0px !important; /* allocate space so the button isn’t overlapped */
     z-index: 20;
-    background-image: url('assets/ipadpro.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+
   }
   .between-cta .liquidGlass-wrapper,
-  .between-cta .btn,
-  .between-cta .btn-primary,
-  .between-cta .btn-secondary {
+  .between-cta .btn {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -430,7 +373,7 @@
 
 /* ------------- utilities ------------- */
 @layer utilities {
-  @media (hover: hover) and (pointer: fine) {
+     @media (hover: hover) and (pointer: fine) {
     html, body { cursor: none; }
     a, button, [role="button"], .btn, input, select, textarea { cursor: none; }
   }
