@@ -17,6 +17,16 @@
     --shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
 }
+.bg-red{
+    background-color: red;
+}
+.bg-yellow{
+    background-color: yellow;
+}
+
+.p-10{
+    padding: 10px;
+}
 
 /* ------------- base ------------- */
 @layer base {
@@ -29,7 +39,7 @@
 
 
   body {
-    cursor: none !important;
+
     margin: 0;
     color: var(--fg);
     background: var(--bg);
@@ -246,7 +256,7 @@
 
   .product-highlights {
     background: var(--secondary);
-    padding: 80px var(--pad);
+    padding: 120px var(--pad);
   }
   .highlight-grid {
     max-width: var(--maxw);
@@ -276,7 +286,9 @@
     line-height: 1.42;
   }
   .feature-callout {
-    padding: 120px var(--pad);
+
+    padding: 30px;
+    position: relative;  
     text-align: center;
     background-size: cover;
     background-position: center;
@@ -284,19 +296,77 @@
     color: white;
     /* full-bleed section */
     width: 100%;
-    margin: 0 auto;
-    background-image: url('/assets/ipadpro.jpg') !important;
+    background-image: url('/assets/titt.png') !important;
+    box-shadow: inset 0 0 5em 1em #000;
   }
-  .marquee {
-    display: flex;
-    flex-direction: column;
+.marquee-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+/* replace the old marquee block */
+.marquee-overlay .osc {
+  width: max-content;                /* size to content so it can slide */
+  transform: translateX(var(--x-left));  /* start on the left */
+  animation: oscX var(--osc-duration) ease-in-out  infinite alternate;
+  will-change: transform;
+}
+@keyframes oscX {
+  from { transform: translateX(var(--x-left)); }
+  to   { transform: translateX(var(--x-right)); }
+}
+
+.marquee-row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+    .glass {
+    margin-top: 80px;
+    width: 400px;
+    height: 400px;
+    backdrop-filter: url(#displacementFilter4);
+    }
+
+    .section2 {
+    padding-top: 100px;
+    padding-bottom: 10px;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* full-bleed section */
+    width: 100%;
+    background: var(--secondary);
+    margin: 0 auto;
 
   }
-.glass {
-  width: 200px;
-  height: 200px;
-  backdrop-filter: url(#displacementFilter4);
-}
+  /* wrap around the image so overlay can sit on top */
+  .section2-media {
+    position: relative;
+    width: 100%;
+  }
+
+  /* make the image define the overlay area */
+  .section2image {
+    display: block;
+    width: 100%;           /* was 100vw; avoids horizontal overflow */
+    height: auto;
+    /* border: red 2px solid;  remove if not needed */
+  }
+
+    .section2 h2 {
+    color: black;
+    font-size: 5rem !important;
+  }
+
+
 
   /* Between-CTA: centers an absolute button between sections */
   .between-cta {
@@ -322,13 +392,13 @@
   .feature-description {
     font-size: 2.4rem;
     line-height: 1.33;
-    color: var(--muted);
+    color: white;
     max-width: 640px;
     margin: 0 auto;
   }
 
   .tech-specs {
-    background: var(--secondary);
+    background: rgba(0,0,0,0.1);
     padding: 80px var(--pad);
   }
   .tech-specs h2 {
@@ -374,9 +444,7 @@
 /* ------------- utilities ------------- */
 @layer utilities {
      @media (hover: hover) and (pointer: fine) {
-    html, body { cursor: none; }
-    a, button, [role="button"], .btn, input, select, textarea { cursor: none; }
-  }
+     }
   @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
   }
