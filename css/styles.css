@@ -36,13 +36,20 @@
     scroll-behavior: smooth;
   }
 
-
-
+ .cursor {
+      width: 120px;
+      height: 120px;
+      backdrop-filter: url(#displacementFilter5);
+      position: fixed;
+      pointer-events: none; /* so it doesn't block clicks */
+      translate: -70% -70%; /* center the circle on the cursor */
+      transition: transform 0.05s ease;
+      z-index: 10000; /* ensure it's on top of other elements */
+    }
   body {
-
     margin: 0;
     color: var(--fg);
-    background: var(--bg);
+    background: var(--secondary);
     font: 400 1.2rem/1 -apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Helvetica,Arial,sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -94,6 +101,86 @@
     z-index: 100;
     
   }
+  .nav__toggle-cursor {
+  display: flex;
+  appearance: none;
+  border: 0;
+  border-radius: var(--radius);
+  padding: 4px 10px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 1.4rem;
+  transition: background-color 0.2s ease;
+  margin-left: auto;  /* Push to the right end of the nav */
+}
+.nav__toggle-cursor:hover {
+  background: var(--accent-hover);
+}
+.cursorico{
+    width: 10px;
+    height: auto;
+  }
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 10px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
   .site-header{
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: saturate(180%) blur(20px);
@@ -366,6 +453,49 @@
     font-size: 5rem !important;
   }
 
+    .section3 {
+      display: flex;
+      flex-wrap: wrap; /* allows wrapping on small screens */
+      gap: 20px;   
+      background-color: white;
+      padding: 20px;
+    }
+
+    .box {
+      flex: 1;   
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;            /* equal width */
+      min-width: 250px;      /* stack when screen smaller than this */
+      padding: 40px;
+      padding-bottom: 0;
+      background-color: var(--secondary);  
+      border-radius: 20px;
+      text-align: center;
+    }
+    .section3image1{
+        display: block;
+        width: 100%;           /* was 100vw; avoids horizontal overflow */
+        margin-top: auto;
+        height: 70%;
+    }
+        .section3image2{
+        display: block;
+        width: 100%;           /* was 100vw; avoids horizontal overflow */
+        height: 70%;
+        margin-top: auto;
+
+    }
+
+    .section3 h2 {
+    color: black;
+    font-size: 5rem !important;
+  }
+  .section3 p{
+        font-size: 1.9rem;
+    color: var(--muted);
+    line-height: 1.42;
+  }
 
 
   /* Between-CTA: centers an absolute button between sections */
@@ -398,12 +528,16 @@
   }
 
   .tech-specs {
-    background: rgba(0,0,0,0.1);
+    background: rgb(0, 0, 0);
     padding: 80px var(--pad);
+  }
+  .spec h3{
+    color: rgb(187, 187, 187);
   }
   .tech-specs h2 {
     font-size: 4.0rem;
     font-weight: 700;
+    color: white;
     text-align: center;
     margin-bottom: 60px;
     letter-spacing: -0.022em;
@@ -413,7 +547,7 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 48px;
+    gap: 70px;
   }
   .spec {
     text-align: center;
