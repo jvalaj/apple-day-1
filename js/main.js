@@ -23,43 +23,65 @@ toggleButton.addEventListener('click', () => {
   }
 });
 
-//animations:
-// ...existing code...
+//animations:// ...existing code...
 
-// Intersection Observer for animations
-const observerOptions = {
-  threshold: 0.4,  // Trigger when 10% of element is visible
-  rootMargin: '0px 0px -50px 0px'  // Adjust trigger point
-};
+// Collect any element that declares a data-animate attribute
+const ioAnimatedEls = document.querySelectorAll('[data-animate]');
 
-const observer = new IntersectionObserver((entries) => {
+// Helper: convert "1s"/"750ms" -> milliseconds number
+function toMs(val) {
+  if (!val) return 0;
+  return val.endsWith('ms') ? parseFloat(val) : parseFloat(val) * 1000;
+}
+
+const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // Add specific animation based on the element
-      if (entry.target.classList.contains('hero')) {
-        entry.target.classList.add('animate-slide-down');
-      } else if (entry.target.classList.contains('product-highlights')) {
-        entry.target.classList.add('animate-fade');
-      } else if (entry.target.classList.contains('feature-callout')) {
-        entry.target.classList.add('animate-slide-left');
-      } else if (entry.target.classList.contains('section2')) {
-        entry.target.classList.add('animate-scale');
-      } else if (entry.target.classList.contains('tech-specs')) {
-        entry.target.classList.add('animate-slide-up');
-      } else if (entry.target.classList.contains('section3')) {
-        entry.target.classList.add('animate-slide-right');
-      }
-      observer.unobserve(entry.target);  // Stop observing after animation
-    }
-  });
-}, observerOptions);
+    if (!entry.isIntersecting) return;
 
-// Observe sections (no default classes added here)
-observer.observe(document.querySelector('.hero'));
-observer.observe(document.querySelector('.product-highlights'));
-observer.observe(document.querySelector('.feature-callout'));
-observer.observe(document.querySelector('.section2'));
-observer.observe(document.querySelector('.tech-specs'));
-observer.observe(document.querySelector('.section3'));
+    const el = entry.target;
+    const animName = el.dataset.animate;                 // required
+    const duration = el.dataset.duration || '0.9s';      // optional
+    const easing = el.dataset.easing || 'ease-out';      // optional
+    const delay = el.dataset.delay || '0s';              // optional
+    const fill = el.dataset.fill || 'forwards';          // optional
+    const iteration = el.dataset.iteration || '1';       // optional
+
+    // Entrance animation
+    const firstAnim = `${animName} ${duration} ${easing} ${delay} ${iteration} ${fill}`;
+    el.style.animation = firstAnim;
+    el.classList.add('is-animated');
+
+    // Chain a float/hover loop if requested (data-float-after="floatPulse")
+    if (el.dataset.floatAfter) {
+      const floatName = el.dataset.floatAfter;
+      const floatDur = el.dataset.floatDuration || '4s';
+      const floatEase = el.dataset.floatEasing || 'ease-in-out';
+      const floatDelay = el.dataset.floatDelay || '0s'; // usually 0
+      const total = toMs(delay) + toMs(duration);
+
+      setTimeout(() => {
+        // Preserve completed first animation (it already ended & used forwards)
+        el.style.animation = `${firstAnim}, ${floatName} ${floatDur} ${floatEase} ${floatDelay} infinite`;
+      }, total);
+    }
+
+    io.unobserve(el);
+  });
+}, {
+  threshold: 0.25,
+  rootMargin: '0px 0px -10% 0px'
+});
+
+// Observe all declarative animated elements
+ioAnimatedEls.forEach(el => io.observe(el));
+
+// Optional: helper to apply stagger inside a container
+function applyStagger(containerSelector, stepMs = 120) {
+  const parent = document.querySelector(containerSelector);
+  if (!parent) return;
+  [...parent.querySelectorAll('[data-animate]')].forEach((el, i) => {
+    if (!el.dataset.delay) el.dataset.delay = `${i * stepMs}ms`;
+  });
+}
 
 // ...existing code...

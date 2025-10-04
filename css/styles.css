@@ -227,57 +227,6 @@ input:checked + .slider:before {
   }
 
 
-  /* LIQUID GLASS STYLES */
-  .liquidGlass-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    overflow: hidden;
-    color: black;
-    cursor: pointer;
-    background-image: url('assets/ipadpro.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
-  }
-
-  .liquidGlass-effect {
-    position: absolute;
-    z-index: 0;
-    inset: 0;
-    backdrop-filter: blur(3px);
-    filter: url(#glass-distortion);
-    overflow: hidden;
-    isolation: isolate;
-  }
-
-  .liquidGlass-tint {
-    z-index: 1;
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.25);
-  }
-
-  .liquidGlass-shine {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    overflow: hidden;
-    box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5),
-      inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5);
-  }
-
-  .liquidGlass-text {
-    z-index: 3;
-    font-size: 1.5rem;
-    color: black;
-   
-  }
-
   /* Button specific styles */
   .button {
     padding: 1.5rem 2.5rem;
@@ -294,18 +243,16 @@ input:checked + .slider:before {
     border-radius: 0 0 50px 50px;
   }
     .hero_inner {
-    height: 20vh !important;
-    font-size: 20px;
+    color: white;
+    height: 12vh !important;
+    font-size: 12px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: black;
     padding: var(--pad);
     max-width: var(--hero-maxw);
     margin: 0 auto;
-    z-index: 10;
   }
   .hero__eyebrow { 
     font-size: 2.1rem; 
@@ -343,8 +290,10 @@ input:checked + .slider:before {
 
   .product-highlights {
     background: var(--secondary);
-    padding: 120px var(--pad);
-  }
+    padding: 50px 0 80px 0;
+    margin-bottom:50px;
+    margin-top: 0px;
+    }
   .highlight-grid {
     max-width: var(--maxw);
     margin: 0 auto;
@@ -484,7 +433,6 @@ input:checked + .slider:before {
         width: 100%;           /* was 100vw; avoids horizontal overflow */
         height: 70%;
         margin-top: auto;
-
     }
 
     .section3 h2 {
@@ -496,6 +444,47 @@ input:checked + .slider:before {
     color: var(--muted);
     line-height: 1.42;
   }
+@keyframes floatPulse {
+  0%,100% { transform: translateY(0) ; }
+  50%     { transform: translateY(3px); }
+}
+.testglass {
+  position: relative;
+margin-top: 40px;
+  width: 282px;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* Use filter, not backdrop-filter, to apply your SVG filter to the element itself */
+  backdrop-filter: url(#displacementFilter6);
+  background: transparent;
+  color: #fff;
+}
+
+/* Border & shadow exactly around the smaller inner rectangle (141x42.5 at 70.5/21.25) */
+.testglass::before {
+  content:"";
+  position: absolute;
+  left:70.5px;
+  top:21.25px;
+  width:141px;
+  height:42.5px;
+  border:0.6px solid rgb(255, 255, 255);
+  border-radius:26px;
+    pointer-events:none;
+}
+
+    .hero_inner:hover{
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out;
+    }
+  .arrow-icon{
+    width: 25px;
+    height: auto;
+    margin-left: 4px;
+  }
 
 
   /* Between-CTA: centers an absolute button between sections */
@@ -503,15 +492,10 @@ input:checked + .slider:before {
     position: relative;
     height: 0px !important; /* allocate space so the button isn’t overlapped */
     z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  }
-  .between-cta .liquidGlass-wrapper,
-  .between-cta .btn {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    z-index: 30;
   }
   .feature-callout h2 {
     font-size: clamp(4.0rem, 8vw, 6.4rem);
@@ -587,46 +571,49 @@ input:checked + .slider:before {
 /* ...existing code... */
 
 /* ------------- animations ------------- */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideDown {
-  from { transform: translateY(-50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { transform: translateY(50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes slideLeft {
-  from { transform: translateX(-50px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideRight {
-  from { transform: translateX(50px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes scaleIn {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.animate-fade { animation: fadeIn 1s ease-out forwards; }
-.animate-slide-down { animation: slideDown 1s ease-out forwards; }
-.animate-slide-up { animation: slideUp 1s ease-out forwards; }
-.animate-slide-left { animation: slideLeft 1s ease-out forwards; }
-.animate-slide-right { animation: slideRight 1s ease-out forwards; }
-.animate-scale { animation: scaleIn 1s ease-out forwards; }
-
-/* Initial state for elements */
-.hero, .product-highlights, .feature-callout, .section2, .tech-specs, .section3 {
+/* Baseline hidden state for any data-animate element */
+[data-animate] {
   opacity: 0;
-  transform: translateY(50px); /* Default slide up */
+  will-change: transform, opacity;
+  /* You can set a neutral transform that many animations override */
+  transform: translateY(24px);
 }
-/* ...existing code... */
+
+/* Sample keyframes (add as many varieties as you need) */
+@keyframes fadeInSoft {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideDownLg {
+  from { transform: translateY(-60px); opacity:0; }
+  to   { transform: translateY(0); opacity:1; }
+}
+@keyframes slideDownLgg {
+  from { transform: translateY(-400px); opacity:1;}
+  to   { transform: translateY(0); opacity:1; }
+}
+@keyframes slideUpSm {
+  from { transform: translateY(30px); opacity:0; }
+  to   { transform: translateY(0); opacity:1; }
+}
+@keyframes slideUpSmm {
+  from { transform: translateY(70px); opacity:0; }
+  to   { transform: translateY(0); opacity:1; }
+}
+@keyframes slideRightFade {
+  from { transform: translateX(-50px); opacity:0; }
+  to   { transform: translateX(0); opacity:1; }
+}
+@keyframes scalePop {
+  0%   { transform: scale(.85); opacity:0; }
+  60%  { transform: scale(1.03); opacity:1; }
+  100% { transform: scale(1); }
+}
+@keyframes rotateIn {
+  from { transform: rotate(-8deg) scale(.9); opacity:0; }
+  to   { transform: rotate(0) scale(1); opacity:1; }
+}
+@keyframes floatPulse {
+  0%,100% { transform: translateY(0) scale(1); }
+  50%     { transform: translateY(-10px) scale(1.02); }
+}

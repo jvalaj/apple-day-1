@@ -36,35 +36,31 @@
   </header>
 
   <main id="main" tabindex="-1">
-    <section class="hero" data-module="ScrollReveal">
-        <div class="hero_inner"></div>
+    <section class="hero" data-animate="slideDownLg" data-duration="1.1s">
+        <div class="hero_inner">   
+          <div class="testglass" data-animate="slideUpSmm" data-duration="1s" data-delay="900ms">
+            Learn More</div>
         </div>
-      <img id="hero-img" class="heroimage" src="/assets/1.png">
+          <img id="hero-img" class="heroimage" src="/assets/1.png"/>
     </section>
 
-    <section class="between-cta" aria-label="Learn more">
-        <div style="width: 10%; margin: auto;">
-        <div class="liquidGlass-wrapper button">
-            <div class="liquidGlass-effect"></div>
-            <div class="liquidGlass-tint"></div>
-            <div class="liquidGlass-shine"></div>
-            <div class="liquidGlass-text">Learn more</div>
-        </div>
+    <section class="between-cta ">
+      <!--<div class="testglass" data-animate="slideDownLgg" data-duration="5s" data-delay="360ms">Learn More</div>-->
     </section>
 
-  <section id="learn" class="product-highlights">
+  <section class="product-highlights" data-animate="fadeInSoft" data-delay="200ms">
       <div class="highlight-grid">
-        <div class="highlight">
+        <div class="highlight" data-animate="slideUpSm" data-delay="240ms">
           <h3>A17 Pro chip</h3>
           <h4>Pro performance</h4>
           <p>Game‑changing performance for everything you love to do.</p>
         </div>
-        <div class="highlight">
+        <div class="highlight" data-animate="slideUpSm" data-delay="400ms">
           <h3>Action button</h3>
           <h4>Do more than ever</h4>
           <p>The Action button is a fast track to your favorite feature.</p>
         </div>
-        <div class="highlight">
+        <div class="highlight" data-animate="slideUpSm" data-delay="600ms">
           <h3>Pro camera system</h3>
           <h4>Close‑up and farther out</h4>
           <p>Get incredible detail with the new 5x Telephoto camera.</p>
@@ -137,63 +133,8 @@
   <footer class="site-footer">
     <small>Made with ❤️ by Jvalaj</small>
   </footer>
+ 
 
-  <svg style="display: none">
-    <filter 
-      id="glass-distortion"
-      x="0%"
-      y="0%"
-      width="100%"
-      height="100%"
-      filterUnits="objectBoundingBox"
-    >
-      <feTurbulence
-        type="fractalNoise"
-        baseFrequency="0.01 0.01"
-        numOctaves="1"
-        seed="5"
-        result="turbulence"
-      />
-      <!-- Seeds: 14, 17,  -->
-
-      <feComponentTransfer in="turbulence" result="mapped">
-        <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
-        <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
-        <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
-      </feComponentTransfer>
-
-      <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
-
-      <feSpecularLighting
-        in="softMap"
-        surfaceScale="5"
-        specularConstant="1"
-        specularExponent="100"
-        lighting-color="white"
-        result="specLight"
-      >
-        <fePointLight x="-200" y="-200" z="300" />
-      </feSpecularLighting>
-
-      <feComposite
-        in="specLight"
-        operator="arithmetic"
-        k1="0"
-        k2="1"
-        k3="1"
-        k4="0"
-        result="litImage"
-      />
-
-      <feDisplacementMap
-        in="SourceGraphic"
-        in2="softMap"
-        scale="150"
-        xChannelSelector="R"
-        yChannelSelector="G"
-      />
-    </filter>
-  </svg>
    <svg id="effectSvg" width="200" height="200" viewBox="0 0 200 200"
        xmlns="http://www.w3.org/2000/svg">
     <filter id="displacementFilter4">
@@ -250,6 +191,38 @@
       <feBlend in2="thing9" mode="multiply"></feBlend>
       <feComposite in2="thing1" operator="in"></feComposite>
       <feOffset dx="43" dy="43"></feOffset>
+  </filter>
+</svg>
+<svg id="effectSvg" width="0" height="0" viewBox="0 0 282 85" xmlns="http://www.w3.org/2000/svg">
+
+
+  <filter id="displacementFilter6">
+    <feImage xlink:href="data:image/svg+xml,%3Csvg width='282' height='85' viewBox='0 0 282 85' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='70.5' y='21.25' width='141' height='42.5' rx='26' fill='rgb%280 0 0 %2F0%25%29' /%3E%3Crect x='70.5' y='21.25' width='141' height='42.5' rx='26' fill='%23FFF' style='filter:blur(0px)' /%3E%3C/svg%3E" x="0%" y="0%" width="100%" height="100%" result="thing9" id="thing9"></feImage>
+    <feImage xlink:href="data:image/svg+xml,%3Csvg width='282' height='85' viewBox='0 0 282 85' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='70.5' y='21.25' width='141' height='42.5' rx='26' fill='rgb%28255 255 255 %2F0%25%29' style='filter:blur(13px)' /%3E%3C/svg%3E" x="0%" y="0%" width="100%" height="100%" result="thing0" id="thing0"></feImage>
+    <feImage xlink:href="data:image/svg+xml,%3Csvg width='282' height='85' viewBox='0 0 282 85' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='70.5' y='21.25' width='141' height='42.5' rx='26' fill='%23000' /%3E%3C/svg%3E" x="0%" y="0%" width="100%" height="100%" result="thing1" id="thing1"></feImage>
+    <feImage xlink:href="data:image/svg+xml,%3Csvg width='282' height='85' viewBox='0 0 282 85' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='gradient1' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%2300F'/%3E%3C/linearGradient%3E%3ClinearGradient id='gradient2' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%230F0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' width='282' height='85' rx='26' fill='%237F7F7F' /%3E%3Crect x='70.5' y='21.25' width='141' height='42.5' rx='26' fill='%23000' /%3E%3Crect x='70.5' y='21.25' width='141' height='42.5' rx='26' fill='url(%23gradient1)' style='mix-blend-mode: screen' /%3E%3Crect x='70.5' y='21.25' width='141' height='42.5' rx='26' fill='url(%23gradient2)' style='mix-blend-mode: screen' /%3E%3Crect x='70.5' y='21.25' width='141' height='42.5' rx='26' fill='rgb%28127 127 127 %2F73.33333333333334%25%29' style='filter:blur(8px)' /%3E%3C/svg%3E" x="0%" y="0%" width="100%" height="100%" result="thing2" id="thing2"></feImage>
+      <feGaussianBlur stdDeviation="0.4" id="preblur" in="SourceGraphic" result="preblur"></feGaussianBlur>
+    <feDisplacementMap id="dispR" in2="thing2" in="preblur" scale="-147.6" xChannelSelector="B" yChannelSelector="G"></feDisplacementMap>
+      <feColorMatrix type="matrix" values="1 0 0 0 0
+              0 0 0 0 0
+              0 0 0 0 0
+              0 0 0 1 0" result="disp1"></feColorMatrix>
+    <feDisplacementMap id="dispG" in2="thing2" in="preblur" scale="-150" xChannelSelector="B" yChannelSelector="G"></feDisplacementMap>
+      <feColorMatrix type="matrix" values="0 0 0 0 0
+              0 1 0 0 0
+              0 0 0 0 0
+              0 0 0 1 0" result="disp2"></feColorMatrix>
+    <feDisplacementMap id="dispB" in2="thing2" in="preblur" scale="-152.4" xChannelSelector="B" yChannelSelector="G"></feDisplacementMap>
+      <feColorMatrix type="matrix" values="0 0 0 0 0
+              0 0 0 0 0
+              0 0 1 0 0
+              0 0 0 1 0" result="disp3"></feColorMatrix>
+      <feBlend in2="disp2" mode="screen"></feBlend>
+      <feBlend in2="disp1" mode="screen"></feBlend>
+      <feGaussianBlur stdDeviation="0" id="postblur"></feGaussianBlur>
+      <feBlend in2="thing0" mode="screen"></feBlend>
+      <feBlend in2="thing9" mode="multiply"></feBlend>
+      <feComposite in2="thing1" operator="in"></feComposite>
   </filter>
 </svg>
   <script type="module" src="/js/main.js"></script>
