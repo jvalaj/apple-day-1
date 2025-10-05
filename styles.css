@@ -593,10 +593,12 @@ margin-top: 40px;
   @media (max-width: 500px) {
         .nav{justify-content: start !important; }
     html { font-size: 55%; }
-
-    .heroimage { border-radius: 0% !important; }
+    .testglass{margin-top: 0px !important;}
+    .heroimage { border-radius: 0% !important; margin-top: 50px !important;}
     .box { padding: 28px 20px 0; }
     .section2image{margin-bottom: 80px;}
+     .tech-specs { padding: 50px 0px; };
+    .product-highlights{margin-bottom: 0px !important;}
     .feature-callout h2 { font-size: clamp(3.2rem, 10vw, 5rem); }
     /* very small devices: minimal motion and slower */
     .section2-media { --x-left: -20%; --x-right: 100%; --osc-duration: 2s; }
@@ -614,6 +616,18 @@ margin-top: 40px;
   transform: translateY(24px);
 }
 
+html.no-anim-mobile [data-animate] {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+html.no-anim-mobile * {
+  animation: none !important;
+}
+@media (max-width:700px) {
+  html.no-anim-mobile .testglass { animation: none !important; }
+  html.no-anim-mobile .glass { animation: none !important; }
+}
 /* Sample keyframes (add as many varieties as you need) */
 @keyframes fadeInSoft {
   from { opacity: 0; }

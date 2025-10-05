@@ -122,3 +122,44 @@ function applyStagger(containerSelector, stepMs = 120) {
 //   calc();
 //   window.addEventListener('resize', () => { requestAnimationFrame(calc); });
 // })();
+
+// ...existing code...
+
+// Disable scroll/entrance animations on small screens
+const isSmallScreen = window.matchMedia('(max-width:700px)').matches;
+if (isSmallScreen) {
+  document.documentElement.classList.add('no-anim-mobile');
+}
+
+// Collect any element that declares a data-animate attribute
+if (!isSmallScreen) {
+  const ioAnimatedEls = document.querySelectorAll('[data-animate]');
+
+  function toMs(val) {
+    if (!val) return 0;
+    return val.endsWith('ms') ? parseFloat(val) : parseFloat(val) * 1000;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const animName = el.dataset.animate;
+      const duration = el.dataset.duration || '0.9s';
+      const easing = el.dataset.easing || 'ease-out';
+      const delay = el.dataset.delay || '0s';
+      const fill = el.dataset.fill || 'forwards';
+      const iteration = el.dataset.iteration || '1';
+      el.style.animation = `${animName} ${duration} ${easing} ${delay} ${iteration} ${fill}`;
+      el.classList.add('is-animated');
+      io.unobserve(el);
+    });
+  }, {
+    threshold: 0.25,
+    rootMargin: '0px 0px -10% 0px'
+  });
+
+  document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
+}
+
+// ...existing code...
