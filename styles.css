@@ -591,8 +591,10 @@ margin-top: 40px;
   @media (max-width: 500px) {
         .nav{justify-content: start !important; }
     html { font-size: 55%; }
+
     .heroimage { border-radius: 0% !important; }
     .box { padding: 28px 20px 0; }
+    .section2image{margin-bottom: 80px;}
     .feature-callout h2 { font-size: clamp(3.2rem, 10vw, 5rem); }
     /* very small devices: minimal motion and slower */
     .section2-media { --x-left: -20%; --x-right: 100%; --osc-duration: 2s; }
