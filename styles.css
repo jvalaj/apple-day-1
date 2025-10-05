@@ -103,7 +103,7 @@
   }
     .nav__brand { display:flex; align-items:center; }
     .nav__links { display:flex; align-items:center; gap:20px; }
-    .nav__links a { text-decoration:none; font-size:1.4rem; color:white; font-weight:500; }
+    .nav__links a { text-decoration:none; font-size:1.2rem; color:white; font-weight:300; }
     .nav__links a:hover { color: var(--accent); }
     .nav__hamburger { display:none; background:transparent; border:0; padding:8px; cursor:pointer; position:relative; }
     .nav__hamburger span { display:block; width:22px; height:2px; background:white; margin:4px 0; transition:transform .3s, opacity .3s; }

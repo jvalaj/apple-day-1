@@ -103,28 +103,6 @@ function applyStagger(containerSelector, stepMs = 120) {
 
 // ...existing code...
 
-/* Optional dynamic tuning for the moving glass (iPhone Air section)
-  Uncomment to have JS compute travel distance instead of static CSS breakpoints.
-  Logic: wider screens -> longer travel & slightly faster cycle. */
-// (function dynamicGlassMotion(){
-//   const media = document.querySelector('.section2-media');
-//   if(!media) return;
-//   function calc(){
-//     const vw = window.innerWidth;
-//     // travel factor scales between phone and very wide desktop
-//     const travel = vw < 480 ? 110 : vw < 900 ? 200 : 280; // percent right target
-//     const left = vw < 480 ? 0 : vw < 900 ? 10 : 25;       // percent left start
-//     const dur = vw < 480 ? 8 : vw < 900 ? 6.5 : 5;        // seconds
-//     media.style.setProperty('--x-left', left + '%');
-//     media.style.setProperty('--x-right', travel + '%');
-//     media.style.setProperty('--osc-duration', dur + 's');
-//   }
-//   calc();
-//   window.addEventListener('resize', () => { requestAnimationFrame(calc); });
-// })();
-
-// ...existing code...
-
 // Disable scroll/entrance animations on small screens
 const isSmallScreen = window.matchMedia('(max-width:700px)').matches;
 if (isSmallScreen) {
