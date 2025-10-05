@@ -4,6 +4,23 @@ let isCustomCursor = true;  // Start with custom cursor active
 const cursorcircle = document.querySelector('.cursor');  // New: Select the image
 const cursorIcon = document.querySelector('.cursorico');  // New: Select the image
 
+// Responsive nav hamburger toggle
+const nav = document.querySelector('.nav');
+const hamburger = document.querySelector('.nav__hamburger');
+if (hamburger && nav) {
+  hamburger.addEventListener('click', () => {
+    const open = nav.classList.toggle('nav--open');
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('nav--open')) {
+      nav.classList.remove('nav--open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
 // Existing mouse move logic
 document.addEventListener('mousemove', (e) => {
   if (isCustomCursor) {
@@ -85,3 +102,23 @@ function applyStagger(containerSelector, stepMs = 120) {
 }
 
 // ...existing code...
+
+/* Optional dynamic tuning for the moving glass (iPhone Air section)
+  Uncomment to have JS compute travel distance instead of static CSS breakpoints.
+  Logic: wider screens -> longer travel & slightly faster cycle. */
+// (function dynamicGlassMotion(){
+//   const media = document.querySelector('.section2-media');
+//   if(!media) return;
+//   function calc(){
+//     const vw = window.innerWidth;
+//     // travel factor scales between phone and very wide desktop
+//     const travel = vw < 480 ? 110 : vw < 900 ? 200 : 280; // percent right target
+//     const left = vw < 480 ? 0 : vw < 900 ? 10 : 25;       // percent left start
+//     const dur = vw < 480 ? 8 : vw < 900 ? 6.5 : 5;        // seconds
+//     media.style.setProperty('--x-left', left + '%');
+//     media.style.setProperty('--x-right', travel + '%');
+//     media.style.setProperty('--osc-duration', dur + 's');
+//   }
+//   calc();
+//   window.addEventListener('resize', () => { requestAnimationFrame(calc); });
+// })();

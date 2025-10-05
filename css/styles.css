@@ -94,13 +94,45 @@
     color: white;
     display: flex; 
     align-items: center; 
-    justify-content: space-between;
+    justify-content: center;
     background: transparent;
     position: sticky;
     top: 0;
     z-index: 100;
     
   }
+    .nav__brand { display:flex; align-items:center; }
+    .nav__links { display:flex; align-items:center; gap:20px; }
+    .nav__links a { text-decoration:none; font-size:1.4rem; color:white; font-weight:500; }
+    .nav__links a:hover { color: var(--accent); }
+    .nav__hamburger { display:none; background:transparent; border:0; padding:8px; cursor:pointer; position:relative; }
+    .nav__hamburger span { display:block; width:22px; height:2px; background:white; margin:4px 0; transition:transform .3s, opacity .3s; }
+    .nav--open .nav__hamburger span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+    .nav--open .nav__hamburger span:nth-child(2){ opacity:0; }
+    .nav--open .nav__hamburger span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+    @media (max-width: 900px){
+      .nav { width:100%; }
+    }
+    @media (max-width: 760px){
+      .nav { height:auto; padding:8px var(--pad); }
+      .nav__hamburger { display:block; }
+      .nav__links { 
+        position:absolute; 
+        top:100%; left:0; right:0; 
+        display:flex; flex-direction:column; align-items:flex-start; 
+        gap:12px; 
+        background:rgba(0,0,0,0.9); 
+        padding:16px var(--pad) 28px; 
+        max-height:0; 
+        overflow:hidden; 
+        opacity:0; 
+        transition:max-height .45s ease, opacity .35s ease; 
+        border-bottom:1px solid rgba(255,255,255,0.08);
+      }
+      .nav--open .nav__links { max-height:70vh; opacity:1; }
+      .nav__links a, .nav__links .nav__toggle-cursor { width:100%; }
+      .nav__links .nav__toggle-cursor { justify-content:flex-start; }
+    }
   .nav__toggle-cursor {
   display: flex;
   appearance: none;
@@ -171,7 +203,7 @@
     margin-left: auto ;
     margin-right: auto;
     height: 45rem !important;
-
+      border-radius: 0 0 50px 50px;
   }
 
 
@@ -336,6 +368,10 @@
   .section2-media {
     position: relative;
     width: 100%;
+    /* movement variables (desktop defaults) */
+    --x-left: 25%;
+    --x-right: 280%;
+    --osc-duration: 5s;
   }
 
   /* make the image define the overlay area */
@@ -514,6 +550,52 @@ margin-top: 40px;
      }
   @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
+    @media (max-width: 1028px) {
+    .section2-media { --x-left: 0%; --x-right: 180%; --osc-duration: 3s; }
+  }
+  /* --- minimal responsive adjustments --- */
+  @media (max-width: 900px) {
+    .nav { width: 100%; gap: 12px; flex-wrap: nowrap; }
+        .nav{justify-content: start !important; }
+    .nav p1 { font-size: 1.2rem; }
+    .heroimage { height: 36rem !important; }
+    .hero__title { font-size: clamp(3.2rem, 9vw, 6.4rem); }
+    .hero__subtitle { font-size: clamp(1.8rem, 3.8vw, 2.4rem); }
+    .highlight-grid { gap: 40px; }
+    .feature-callout { padding: 40px 20px; }
+    .section3 { flex-direction: column; }
+    .box { padding: 32px 24px 0; }
+    /* tighten glass travel on tablets */
+    .section2-media { --x-left: 0%; --x-right: 140%; --osc-duration: 3s; }
+  }
+  @media (max-width: 600px) {
+    html { font-size: 58%; }
+    .hero_inner { height: auto !important; padding-top: 60px; }
+    .heroimage { height: auto !important;
+    margin-top: 40px;
+    }
+    .nav{justify-content: start !important; }
+    .testglass { transform: scale(.9); }
+    .highlight h3 { font-size: 2.6rem; }
+    .highlight h4 { font-size: 2.0rem; }
+    .highlight p, .section3 p, .spec p { font-size: 1.6rem; }
+    .section2 h2, .section3 h2 { font-size: 3.6rem !important; }
+    .specs-grid { gap: 40px; }
+    .glass { width: 280px; height: 280px; 
+      margin-top: 0px !important;
+    }
+    /* further reduce travel on small phones */
+    .section2-media { --x-left: -10%; --x-right: 120%; --osc-duration: 3s; }
+  }
+  @media (max-width: 500px) {
+        .nav{justify-content: start !important; }
+    html { font-size: 55%; }
+    .heroimage { height: 26rem !important; }
+    .box { padding: 28px 20px 0; }
+    .feature-callout h2 { font-size: clamp(3.2rem, 10vw, 5rem); }
+    /* very small devices: minimal motion and slower */
+    .section2-media { --x-left: -20%; --x-right: 100%; --osc-duration: 2s; }
   }
 }
 /* filepath: /Users/jvalaj/apple-day-1/css/styles.css */

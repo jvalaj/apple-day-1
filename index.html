@@ -12,25 +12,24 @@
 <body>
   <div class="cursor"></div>
   <header class="site-header" role="banner">
-    <nav class="nav" aria-label="Primary">
-      <img src="/assets/icon.jpeg" class="navico"></a>
-      <p1>Store</p1>
-      <p1>Mac</p1>
-      <p1>iPhone</p1>
-      <p1>iPad</p1>
-      <p1>Watch</p1>
-      <p1>Vision</p1>
-      <p1>AirPods</p1>
-      <p1>TV & Home</p1>
-      <p1>Entertainment</p1>
-      <p1>Accessories</p1>  
-      <p1>Support</p1>
-      <p1> 
-        <button class="nav__toggle-cursor">
-          <img src="/assets/cursor.png" class="cursorico"/>
+    <nav class="nav"  aria-label="Primary">
+      <button class="nav__hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav__links" id="primary-nav">
+        <img src="/assets/icon.jpeg" class="navico" alt="Logo">
+        <a href="#">Store</a>
+        <a href="#">Mac</a>
+        <a href="#">iPhone</a>
+        <a href="#">iPad</a>
+        <a href="#">Watch</a>
+        <a href="#">Vision</a>
+        <a href="#">Accessories</a>
+        <a href="#">Support</a>
+        <button class="nav__toggle-cursor" type="button" title="Toggle custom cursor">
+          <img src="/assets/cursor.png" class="cursorico" alt="Cursor toggle"/>
         </button>
-      </p1>
-   
+      </div>
     </nav>
        
   </header>
@@ -80,7 +79,7 @@
             </div>
         </div>
 
-      <div class="section2-media" style="--x-left:25%; --x-right:280%; --osc-duration:5s;">
+  <div class="section2-media">
         <img src="/assets/iphoneair.png" class="section2image" alt="iPhone Air">
         <div class="marquee-overlay" aria-hidden="true">
           <div class="osc">
@@ -134,7 +133,8 @@
     <small>Made with ❤️ by Jvalaj</small>
   </footer>
  
-     <defs>
+     <!-- Hidden filter container (keeps filters usable, not visible) -->
+     <div style="position:absolute;left:-9999px;top:-9999px;width:0;height:0;overflow:hidden;pointer-events:none;">
          <svg id="effectSvg" width="200" height="200" viewBox="0 0 200 200"
        xmlns="http://www.w3.org/2000/svg">
     <filter id="displacementFilter4">
@@ -258,7 +258,7 @@
       <feOffset dx="43" dy="43"></feOffset>
   </filter>
 </svg>
-      </defs>
+  </div>
 
 
 
