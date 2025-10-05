@@ -8,6 +8,11 @@
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" type="image/jpeg" href="assets/iconc.png">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preload"
+        as="image"
+        href="assets/1_1200.png"
+        imagesrcset="assets/1_800.png 800w, assets/1_1200.png 1200w, assets/1_1600.png 1600w"
+        imagesizes="(max-width:900px) 90vw, 980px">
 </head>
 <body>
   <div class="cursor"></div>
@@ -40,7 +45,25 @@
           <div class="testglass" data-animate="slideUpSmm" data-duration="1s" data-delay="900ms">
             Learn More</div>
         </div>
-          <img id="hero-img" class="heroimage" src="assets/1.png"/>
+         <picture>
+      <!-- Keep single webp (fallbacks will still work) -->
+      <source type="image/webp"
+              srcset="assets/1.webp"
+              sizes="(max-width:900px) 90vw, 980px">
+      <source type="image/png"
+              srcset="assets/1_800.png 800w,
+                      assets/1_1200.png 1200w,
+                      assets/1_1600.png 1600w"
+              sizes="(max-width:900px) 90vw, 980px">
+      <img id="hero-img"
+           class="heroimage"
+           src="assets/1_1200.png"
+           width="1200"
+           height="720"
+           alt="Product hero"
+           decoding="async"
+           fetchpriority="high">
+    </picture>
     </section>
 
     <section class="between-cta ">

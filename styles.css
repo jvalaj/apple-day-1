@@ -199,12 +199,14 @@
     border-radius: 50%;
 
   }
-  .heroimage{
-    margin-left: auto ;
-    margin-right: auto;
-    height: 45rem !important;
-      border-radius: 0 0 50px 50px;
-  }
+.heroimage {
+  width: 100%;
+  max-width: 980px;
+  height: auto !important;
+  margin:auto;
+  margin-top: 10px;
+
+}
 
 
   /* Button specific styles */
