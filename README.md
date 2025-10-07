@@ -1,1 +1,1 @@
-https://jvalaj.github.io/apple-day-1/
+https://jvalaj.github.io/liquid-glass-try/
